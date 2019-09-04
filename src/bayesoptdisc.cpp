@@ -95,6 +95,10 @@ namespace bayesopt
   vectord DiscreteModel::remapPoint(const vectord& x)
   { return x; }
 
+
+  vectord DiscreteModel::mapPoint(const vectord& x)
+  { return x; }
+
   void DiscreteModel::generateInitialPoints(matrixd& xPoints)
   {
 

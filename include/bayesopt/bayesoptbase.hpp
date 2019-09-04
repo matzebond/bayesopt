@@ -175,6 +175,8 @@ namespace bayesopt {
 	unnormalization) */
     virtual vectord remapPoint(const vectord& x) = 0;
 
+    virtual vectord mapPoint(const vectord& x) = 0;
+
     /** Selects the initial set of points to build the surrogate model. */
     virtual void generateInitialPoints(matrixd& xPoints) = 0;
 

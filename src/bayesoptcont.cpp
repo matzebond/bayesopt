@@ -131,6 +131,11 @@ namespace bayesopt  {
     return mBB->unnormalizeVector(x);
   }
 
+  vectord ContinuousModel::mapPoint(const vectord& x)
+  {
+    return mBB->normalizeVector(x);
+  }
+
   void ContinuousModel::generateInitialPoints(matrixd& xPoints)
   {   
     utils::samplePoints(xPoints,mParameters.init_method,mEngine);
