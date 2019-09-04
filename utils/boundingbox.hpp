@@ -45,7 +45,7 @@ namespace bayesopt {
 
       inline V normalizeVector( const V &vin )
       {
-	return ublas_elementwise_div(vin - mLowerBound, mRangeBound);
+	 return boost::numeric::ublas::element_div(vin - mLowerBound, mRangeBound);
       }  // normalizeVector
   
     protected:
