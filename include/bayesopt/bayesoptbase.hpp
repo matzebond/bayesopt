@@ -131,6 +131,12 @@ namespace bayesopt {
      */  
     void stepOptimization();
 
+    /**
+     * \brief Execute a step at the given coordinates of the function defined in
+     * evaluateSample and add the result to the optimization process.
+     */
+    void forceOptimization(vectord xNext);
+
     /** Initialize the optimization process.  */
     void initializeOptimization();
     
@@ -179,6 +185,9 @@ namespace bayesopt {
 
     /** Selects the initial set of points to build the surrogate model. */
     virtual void generateInitialPoints(matrixd& xPoints) = 0;
+
+    /** Update the model with the result of one optimization step. */
+    void updateModel(vectord x, double y);
 
     /** 
      * \brief Print data for every step according to the verbose level

@@ -133,7 +133,19 @@ namespace bayesopt
           }
       }
 
-    mModel->addSample(xNext,yNext);
+    updateModel(xNext, yNext);
+  }
+
+  void BayesOptBase::forceOptimization(vectord x)
+  {
+    vectord xNext = mapPoint(x);
+    double yNext = evaluateSampleInternal(xNext);
+    updateModel(xNext, yNext);
+  }
+
+
+  void BayesOptBase::updateModel(vectord x, double y) {
+    mModel->addSample(x,y);
 
     // Update surrogate model
     bool retrain = ((mParameters.n_iter_relearn > 0) && 
@@ -149,8 +161,8 @@ namespace bayesopt
         mModel->updateSurrogateModel();
       } 
 
-    plotStepData(mCurrentIter,xNext,yNext);
-    mModel->updateCriteria(xNext);
+    plotStepData(mCurrentIter,x,y);
+    mModel->updateCriteria(x);
     mCurrentIter++;
     
     // Save state if required
